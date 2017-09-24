@@ -1,0 +1,58 @@
+<html>
+	<head>
+		<script src="jquery.min.js" type="text/javascript"></script>
+		<style>
+
+			.panel{
+				margin:20px;
+
+			}
+			.panel > div.header{
+				padding:10px;
+				background-color: cyan
+			}
+
+			.panel > div.body{
+				padding:10px;
+				background-color: magenta
+			}
+
+			.showClass{
+				display:none;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="panel">
+			<div class="header">
+				Student Information
+			</div>
+			<div class="body showClass	">
+				<table>
+					<tr><th>Name</th><th>Location</th></tr>
+					<tr><td>Chandaneswar</td><td>Goa</td></tr>
+					<tr><td>Abhisekh</td><td>Chennai</td></tr>
+					<tr><td>Pritam</td><td>Chennai</td></tr>
+					<tr><td>Lucias</td><td>Delhi</td></tr>
+				</table>
+			</div>
+		</div>
+	</body>
+	<script>
+		$(document).ready(function(){
+
+			$(".panel > div.header").on("click", fun);
+
+			function fun(){
+				$(".panel > div.body").toggleClass("showClass");
+
+			}
+
+
+
+
+
+		});
+	</script>
+</html>

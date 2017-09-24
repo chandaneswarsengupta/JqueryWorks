@@ -1,0 +1,129 @@
+<!DOCTYPE>
+<html>
+	<head>
+		
+	
+		<style>
+			.errorMessage{
+				color:red;
+				font-size:13px;
+			}
+
+
+		</style>
+	</head>
+	<body>
+		<form name="registerForm" id="registerForm" onsubmit="return validate1()" >
+			Username : <input type="text" name="username" id="username" /> <br>
+			<label id="usernameValidationMessage" class="errorMessage"></label><br>
+			Password : <input type="text" name="password" id="password" />  <br>
+			<label id="passwordValidationMessage" class="errorMessage"></label><br>
+			Re-enter : <input type="text" name="reenterPassword" id="reenterPassword"/> <br>
+			<label id="reenterPasswordValidationMessage" class="errorMessage"></label><br>
+			
+
+			<input type="radio" name="sex" id="male" value="male">Male
+			<input type="radio" name="sex" id="female" value="female">Female
+			<label id="genderValidationMessage" class="errorMessage"></label><br>
+
+
+			
+
+			<br>
+			<input type="checkbox" name="sports" id="cricket" value="cricket"> Cricket
+			<input type="checkbox" name="sports" id="footbal" value="footbal"> Football
+			<input type="checkbox" name="sports" id="badminton" value="badminton"> Badminton
+			<label id="sportsValidationMessage" class="errorMessage"></label><br>
+
+
+
+			<br>
+			<input type="submit" name="sub" id="sub" value="Register">
+		</form>
+	</body>
+	<script>
+		
+
+			var username = document.forms["registerForm"]["username"];
+			var password = document.forms["registerForm"]["password"];
+			var reenterPassword =  document.forms["registerForm"]["reenterPassword"];
+			var sex = document.forms["registerForm"]["sex"];
+			var sports = document.forms["registerForm"]["sports"];
+
+
+			username.addEventListener("blur", fun);
+			password.addEventListener("blur", fun)			
+
+			function fun(){
+				if(this.value == "" || this.value.length == 0){
+					this.style.border = "1px solid red";
+					
+				}
+				else{
+					this.style.border = "1px solid black";
+					this.nextElementSibling.nextElementSibling.innerText=""
+					
+				}
+			}
+
+		
+
+			function validate1(){
+				if(username.value = "" || username.value.length==0){
+					username.style.border = "1px solid red";
+					document.getElementById("usernameValidationMessage").innerText = "Username cannot be blank";
+					return false;
+
+				}
+
+
+				if(password.value == "" ||  password.value.length == 0){
+					password.style.border = "1px solid red";
+					document.getElementById("passwordValidationMessage").innerText = "Password cannot be blank";
+					return false;
+				}
+
+				if(reenterPassword.value == "" ||  reenterPassword.value.length == 0){
+					reenterPassword.style.border = "1px solid red";
+					document.getElementById("reenterPasswordValidationMessage").innerText = "Re-enter Password cannot be blank";
+					return false;
+				}
+
+
+				if(password.value != reenterPassword.value){
+					reenterPassword.style.border = "1px solid red";
+					document.getElementById("reenterPasswordValidationMessage").innerText = "Password mismatched";
+					return false;
+				}
+
+				// Option - Sex
+				if(sex[0].checked==false && sex[1].checked==false){
+					document.getElementById("genderValidationMessage").innerText = "Gender required"
+					return false;
+				}else{
+					document.getElementById("genderValidationMessage").innerText = ""
+
+				}
+
+
+				// Atleast one sports
+				counterSports=0;
+				for(var i=0; i<sports.length; i++){
+					if(sports[i].checked==true){
+						counterSports++;
+					}
+				}
+				if(counterSports==0){
+					document.getElementById("sportsValidationMessage").innerText="Select atleast 1 sports";
+					return false;
+				}
+				else{
+					document.getElementById("sportsValidationMessage").innerText="";
+				}
+
+
+
+			}
+	
+	</script>
+</html>
